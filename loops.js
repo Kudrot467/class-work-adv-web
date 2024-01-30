@@ -12,3 +12,10 @@ do{
     console.log(x[j]);
     j++;
 }while(j<2);
+
+for(let i in x){
+    console.log(x[i]);
+}
+for(let i of x){
+    console.log(i);
+}
