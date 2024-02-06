@@ -6,15 +6,14 @@ export class Teacher{
     public age :number;
     public presentAddress: string;
     public experience:string;
-    public courseName:string;
-    constructor(role:string,id:number,name:string,age :number, presentAddress: string,experience:string,courseName:string){
+    public info:string[]=[];
+    constructor(role:string,id:number,name:string,age :number, presentAddress: string,experience:string){
         this.role=role;
         this.id=id;
         this.name=name;
         this.age=age;
         this.presentAddress=presentAddress;
         this.experience=experience;
-        this.courseName=courseName;
     }
     display():void{
         console.log(` 
@@ -23,12 +22,11 @@ export class Teacher{
         Name:${this.name},
         Age:${this.age},
         Present Address:${this.presentAddress},
-        Experience:${this.experience},
-        Course Name:${this.courseName}.
-        
+        Experience:${this.experience}
         `)
     }
     assignCourse(course:Course){
+        this.info.push(course.courseName);
         console.log(`
         ${this.name} assigned ${course.courseName}
         -----------Updated Profile-----------
@@ -38,8 +36,8 @@ export class Teacher{
         Age:${this.age},
         Present Address:${this.presentAddress},
         Experience:${this.experience},
-        Courses Name:${this.courseName},${course.courseName}.
-        `)
+        Taken Course:${this.info}.
+        `);
     }
     
 }
