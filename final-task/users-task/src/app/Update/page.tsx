@@ -1,8 +1,6 @@
 "use client"
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import 'tailwindcss/tailwind.css'
 
 const registration = () => {
     const [showPassword, setShowPassWord] = useState(false);
@@ -12,37 +10,38 @@ const registration = () => {
         formState: { errors },
       } = useForm();
     return (
-        <div className="max-w-[1220px] mx-auto py-6">
+        <div className="py-20">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content md:w-3/4 lg:w-full flex-col md:flex-row">
           <div className="card flex-shrink-0 w-full md:w-3/4 lg:w-1/2 shadow-2xl bg-base-100">
-            <form className="card-body pl-4">
+            <form className="card-body">
               <div className="flex flex-col md:flex-col lg:flex-row gap-1">
                 <div className="form-control"></div>
                 <div className="form-control w-full">
                   <div className=" text-[#C6A921] font-medium text-lg text-center flex">
-                   
+                    <div>
+                      <h3 className="bg-[#C6A921] text-white text-xl font-semibold p-3 rounded-xl mr-3 flex">
+                      </h3>
+                    </div>
                     <h1 className=" text-[#C6A921] font-bold text-2xl rounded-xl w-full underline">
                       Registration
                     </h1>
                   </div>
                   <label className="label">
                     <span className="label-text text-[#C6A921] font-medium text-lg">
-                      User Name:
+                      User Name
                     </span>
                   </label>
-                  <div>
                   <input
                     type="text"
                     {...register("userName", { required: true })}
-                    placeholder="enter your username"
+                    placeholder="User Name"
                     name="userName"
-                    className="border-2 border-[#C6A921]"
+                    className="input input-bordered border-[#C6A921]"
                   />
                   {errors.userName && (
                     <span className="text-red-700">*User Name is required</span>
                   )}
-                  </div>
                 </div>
               </div>
               <div>
@@ -52,18 +51,16 @@ const registration = () => {
                      Contact No.
                     </span>
                   </label>
-                  <div>
                   <input
                     type="text"
                     {...register("contact", { required: true })}
                     placeholder="Contact no."
                     name="contact"
-                    className="border-2 border-[#C6A921]"
+                    className="input input-bordered border-[#C6A921]"
                   />
                   {errors.contact && (
                     <span className="text-red-700">*contact number is required</span>
                   )}
-                  </div>
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -71,18 +68,16 @@ const registration = () => {
                       Image URL
                     </span>
                   </label>
-                 <div>
-                 <input
+                  <input
                     type="text"
                     {...register("image_url", { required: true })}
                     placeholder="Image url"
                     name="image_url"
-                    className="border-2 border-[#C6A921]"
+                    className="input input-bordered border-[#C6A921]"
                   />
                   {errors.image_url && (
                     <span className="text-red-700">*image is required</span>
                   )}
-                 </div>
                 </div>
 
                 <div className="form-control">
@@ -96,7 +91,7 @@ const registration = () => {
                     {...register("email", { required: true })}
                     placeholder="email"
                     name="email"
-                    className="border-2 border-[#C6A921]"
+                    className="input input-bordered border-[#C6A921]"
                   />
                   {errors.email && (
                     <span className="text-red-700">*Email is required</span>
@@ -119,7 +114,7 @@ const registration = () => {
                       })}
                       placeholder="password"
                       name="password"
-                      className="input input-bordered border-[#C6A921]"
+                      className="input input-bordered w-full border-[#C6A921]"
                     />
                     {errors.password?.type === "required" && (
                       <span className="text-red-700">
@@ -150,17 +145,11 @@ const registration = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="text-white hover:bg-[#C6A921] bg-[#C6A921] p-2 rounded-lg">
-                  Registration
+                <button className="btn text-white hover:bg-[#C6A921] bg-[#C6A921]">
+                  Update Information
                 </button>
               </div>
             </form>
-            <p className="text-center font-medium text-lg text-[#C6A921]">
-              Already have an account ?{" "}
-              <Link className="text-red-400" href="/Login">
-                Login
-              </Link>
-            </p>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const login = () => {
@@ -80,7 +80,7 @@ const login = () => {
           </form>
           <p className="text-center font-medium text-lg text-[#C6A921]">
             New Applicant ?{" "}
-            <Link className="text-red-400" href="/registration">
+            <Link className="text-red-400" href="/Registration">
               Register
             </Link>
           </p>
