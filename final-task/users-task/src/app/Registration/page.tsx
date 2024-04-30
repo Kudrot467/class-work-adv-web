@@ -16,7 +16,7 @@ const registration = () => {
       } = useForm();
 
       const axiosPublic=useAxiosPublic();
-      const onSubmit =async (data:any) => {
+      const onSubmit =async (data) => {
         const username = data.username;
         const contact=data.contact;
         const image_url = data.image_url;
@@ -32,12 +32,11 @@ const registration = () => {
         };
         console.log(user);
         try {
-        const response = await axiosPublic.post("/users/signup", data,{ // options
-          withCredentials: true,
+        const response = await axiosPublic.post("/users/signup", data.user, {
           headers: {
-           'Content-Type': 'multipart/form-data'
-        }
-      })
+            'Content-Type': 'application/json', // Ensure this matches the expected content type
+          },
+        })
         //   .then((response) => response.json())
         const responseData = response.data;
         console.log(responseData);
