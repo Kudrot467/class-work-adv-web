@@ -18,6 +18,9 @@ const page = () => {
         fetchProducts();}, []);
     return (
         <div>
+            {
+                products.length===0 && <div className="text-3xl bg-red-900 text-white font-bold"> No Products Available</div>
+            }
             <table className="table table-zebra w-full">
         {/* head */}
         <thead>
