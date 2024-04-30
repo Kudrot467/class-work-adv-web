@@ -15,8 +15,20 @@ export class User {
   userId: number;
 
   @ApiProperty()
-  @Column({ unique: true,nullable: false })
+  @Column({ nullable: false })
   username: string;
+
+  @ApiProperty()
+  @Column({ nullable: false })
+  contact:string;
+
+  @ApiProperty()
+  @Column({ nullable: false })
+  image_url:string;
+
+  @ApiProperty()
+  @Column({ nullable: false })
+  email:string;
 
   @ApiProperty()
   @Column({ nullable: false })

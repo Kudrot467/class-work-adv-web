@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, ValidationPipe } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
@@ -13,7 +13,6 @@ export class PostsController {
   @ApiCreatedResponse({
     description:'Post created'
   })
-  @UseGuards(AuthGuard)
   @Post('createPost')
   create(@Body(ValidationPipe) createPostDto: CreatePostDto) {
     return this.postsService.create(createPostDto);
@@ -22,7 +21,6 @@ export class PostsController {
   @ApiBadRequestResponse({
     description:'No Posts to show'
   })
-  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.postsService.findAll();
@@ -31,7 +29,6 @@ export class PostsController {
   @ApiBadRequestResponse({
     description:'Invalid post id!'
   })
-  @UseGuards(AuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postsService.findById(+id);
@@ -40,13 +37,11 @@ export class PostsController {
   @ApiBadRequestResponse({
     description:'No existing post'
   })
-  @UseGuards(AuthGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
     return this.postsService.update(+id, updatePostDto);
   }
 
-  @UseGuards(AuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.postsService.remove(+id);

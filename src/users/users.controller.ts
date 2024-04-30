@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, HttpStatus, HttpCode, ValidationPipe } from '@nestjs/common';
+import {Controller, Get, Post, Body, HttpStatus, HttpCode, ValidationPipe, Delete, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiBadRequestResponse, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
@@ -20,9 +20,13 @@ export class UsersController {
   @ApiBadRequestResponse({
     description:'user cannot register. try again!'
   })
-  @Get('users')
+  @Get()
   findAll() {
     return this.usersService.findAll();
+  }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.usersService.remove(+id);
   }
  
 }
