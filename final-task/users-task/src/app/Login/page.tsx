@@ -17,8 +17,7 @@ const login = () => {
         const email = data.email;
       const password = data.password;
       console.log(email,password);
-       
-            
+             
       }
 
     return (
@@ -34,7 +33,7 @@ const login = () => {
           />
         </div>
         <div className="card flex-shrink-0 w-full md:w-3/4 lg:w-1/2 shadow-2xl bg-base-100">
-          <form onSubmit={handleSubmit} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="form-control">
                   <label className="label">
                     <span className="label-text text-[#C6A921] font-medium text-lg">
