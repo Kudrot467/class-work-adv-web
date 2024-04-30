@@ -2,21 +2,60 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import 'tailwindcss/tailwind.css'
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const registration = () => {
     const [showPassword, setShowPassWord] = useState(false);
     const {
         register,
+        handleSubmit,
         reset,
         formState: { errors },
       } = useForm();
+
+      const axiosPublic=useAxiosPublic();
+      const onSubmit =async (data:any) => {
+        const username = data.username;
+        const contact=data.contact;
+        const image_url = data.image_url;
+        const email = data.email;
+        const password = data.password;
+    
+        const user = {
+          username,
+          contact,
+          image_url,
+          email,
+          password
+        };
+        console.log(user);
+        try {
+        const response = await axiosPublic.post("/users/signup", data,{ // options
+          withCredentials: true,
+          headers: {
+           'Content-Type': 'multipart/form-data'
+        }
+      })
+        //   .then((response) => response.json())
+        const responseData = response.data;
+        console.log(responseData);
+        if (response.status === 201) {
+         reset();
+          Swal.fire("Thank You!", "Registration Successful!", "success");
+        }
+        }
+        catch(error){
+          console.error("Error:", error);
+        }
+        };
     return (
         <div className="max-w-[1220px] mx-auto py-6">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content md:w-3/4 lg:w-full flex-col md:flex-row">
           <div className="card flex-shrink-0 w-full md:w-3/4 lg:w-1/2 shadow-2xl bg-base-100">
-            <form className="card-body pl-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body pl-4">
               <div className="flex flex-col md:flex-col lg:flex-row gap-1">
                 <div className="form-control"></div>
                 <div className="form-control w-full">
@@ -34,12 +73,12 @@ const registration = () => {
                   <div>
                   <input
                     type="text"
-                    {...register("userName", { required: true })}
+                    {...register("username", { required: true })}
                     placeholder="enter your username"
-                    name="userName"
+                    name="username"
                     className="border-2 border-[#C6A921]"
                   />
-                  {errors.userName && (
+                  {errors.username && (
                     <span className="text-red-700">*User Name is required</span>
                   )}
                   </div>

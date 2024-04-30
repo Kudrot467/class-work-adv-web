@@ -1,20 +1,58 @@
 "use client"
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const registration = () => {
     const [showPassword, setShowPassWord] = useState(false);
     const {
         register,
+        handleSubmit,
         reset,
         formState: { errors },
       } = useForm();
+
+      const axiosPublic=useAxiosPublic();
+      const onSubmit =async (data:any) => {
+        const username = data.username;
+        const contact=data.contact;
+        const image_url = data.image_url;
+        const email = data.email;
+        const password = data.password;
+    
+        const user = {
+          username,
+          contact,
+          image_url,
+          email,
+          password
+        };
+        console.log(user);
+        try {
+        const response = await axiosPublic.put("/users/signup", data,{ // options
+          withCredentials: true,
+          headers: {
+           'Content-Type': 'multipart/form-data'
+        }
+      })
+        //   .then((response) => response.json())
+        const responseData = response.data;
+        console.log(responseData);
+        if (response.status === 201) {
+         reset();
+          Swal.fire("Thank You!", "Registration Successful!", "success");
+        }
+        }
+        catch(error){
+          console.error("Error:", error);
+        }};
     return (
         <div className="py-20">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content md:w-3/4 lg:w-full flex-col md:flex-row">
           <div className="card flex-shrink-0 w-full md:w-3/4 lg:w-1/2 shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="flex flex-col md:flex-col lg:flex-row gap-1">
                 <div className="form-control"></div>
                 <div className="form-control w-full">
