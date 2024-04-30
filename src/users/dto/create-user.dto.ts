@@ -20,6 +20,10 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsNotEmpty()
+  role:string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   email:string;
 
   @ApiProperty()

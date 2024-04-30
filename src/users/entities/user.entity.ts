@@ -28,6 +28,10 @@ export class User {
 
   @ApiProperty()
   @Column({ nullable: false })
+  role:string;
+
+  @ApiProperty()
+  @Column({ nullable: false })
   email:string;
 
   @ApiProperty()

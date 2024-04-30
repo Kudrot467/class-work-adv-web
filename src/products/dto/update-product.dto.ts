@@ -1,22 +1,22 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreatePostDto } from './create-post.dto';
+import { CreateProductDto } from './create-product.dto';
 import { IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdatePostDto extends PartialType(CreatePostDto) {
+export class UpdateProductDto extends PartialType(CreateProductDto) {
     @ApiProperty()
     @IsOptional()
     @IsString()
-    postTitle?: string;
-
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    postedFor?: string;
+    productTitle?: string;
   
     @ApiProperty()
     @IsOptional()
     @IsString()
-    postDetails?: string;
+    productDetails?: string;
+
+    @ApiProperty()
+    @IsOptional()
+    @IsString()
+    price?: string;
   
 }
